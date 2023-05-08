@@ -10,9 +10,6 @@
         <module name="quiz" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="quiz" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

@@ -1,15 +1,19 @@
 package jogo.quiz.models;
-
+import jakarta.persistence.Entity;
+import lombok.Builder;
+import lombok.Data;
 import java.util.List;
+import java.util.UUID;
 
-public class DualChoiceQuestion extends Question{
-
-    public DualChoiceQuestion(String rightAnswer, String text, double pointer, List list) {
-        super(rightAnswer, text, pointer, list);
-    }
-
-    public String Answers(){
-        return "dual choice questions";
-    }
-
+@Data
+@Entity
+public class DualChoiceQuestion extends Question {
+  @Builder
+  public DualChoiceQuestion(UUID id,
+                            String text,
+                            double points,
+                            String rightAnswer,
+                            List<String> answerList) {
+    super(id, text, points, rightAnswer, answerList);
+  }
 }

@@ -1,8 +1,10 @@
 package jogo.quiz.models;
-import jakarta.persistence.Entity;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.UUID;
 
 @Entity
@@ -10,7 +12,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Score {
-    public UUID userId;
-    public double points;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID userId;
+    private double points;
     private int rightAnswers;
+
+    @OneToOne
+    @JoinColumn(name = "player_id")
+    private Player player;
 }

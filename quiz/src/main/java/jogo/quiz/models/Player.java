@@ -22,4 +22,9 @@ public class Player {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
+
+  public Player(String nome, String githubUser) {
+    this.nome = nome;
+    this.githubUser = githubUser;
+  }
 }

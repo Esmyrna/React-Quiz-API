@@ -21,4 +21,10 @@ public class Score {
     @OneToOne
     @JoinColumn(name = "player_id")
     private Player player;
+
+    public Score(UUID userId, double points, int rightAnswers) {
+        this.userId = userId;
+        this.points = points;
+        this.rightAnswers = rightAnswers;
+    }
 }

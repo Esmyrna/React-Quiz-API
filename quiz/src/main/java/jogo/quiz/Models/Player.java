@@ -1,4 +1,4 @@
-package jogo.quiz.models;
+package jogo.quiz.Models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

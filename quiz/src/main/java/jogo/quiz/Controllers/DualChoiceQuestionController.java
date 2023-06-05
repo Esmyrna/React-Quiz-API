@@ -1,11 +1,11 @@
 package jogo.quiz.Controllers;
 
-import jogo.quiz.DTOS.DTOMultipleOptionsQuestion;
+import jogo.quiz.DTOS.DTOQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import jogo.quiz.Repositories.DualChoiceQuestionRepository;
-import jogo.quiz.models.DualChoiceQuestion;
+import jogo.quiz.Models.DualChoiceQuestion;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,19 +32,14 @@ public class DualChoiceQuestionController {
     }
 
     @PostMapping
-    public DualChoiceQuestion createQuestion(@RequestBody DTOMultipleOptionsQuestion questionDto) {
-        DualChoiceQuestion question = DualChoiceQuestion.builder()
-                .text(questionDto.text())
-                .points(questionDto.points())
-                .rightAnswer(questionDto.rightAnswer())
-                .answerList(questionDto.answerList())
-                .build();
+    public DualChoiceQuestion createQuestion(@RequestBody DTOQuestion questionDto) {
+        DualChoiceQuestion question = new DualChoiceQuestion(questionDto);
 
         return questionRepository.save(question);
     }
 
     @PutMapping("/{id}")
-    public void updateQuestion(@PathVariable UUID id, @RequestBody DTOMultipleOptionsQuestion updatedQuestionDto) {
+    public void updateQuestion(@PathVariable UUID id, @RequestBody DTOQuestion updatedQuestionDto) {
         Optional<DualChoiceQuestion> questionOptional = questionRepository.findById(id);
         if (questionOptional.isPresent()) {
             DualChoiceQuestion question = questionOptional.get();

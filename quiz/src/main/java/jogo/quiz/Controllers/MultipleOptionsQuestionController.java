@@ -1,11 +1,11 @@
 package jogo.quiz.Controllers;
 
-import jogo.quiz.DTOS.DTOMultipleOptionsQuestion;
+import jogo.quiz.DTOS.DTOQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import jogo.quiz.Repositories.MultipleOptionsQuestionRepository;
-import jogo.quiz.models.MultipleOptionsQuestion;
+import jogo.quiz.Models.MultipleOptionsQuestion;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,19 +32,14 @@ public class MultipleOptionsQuestionController {
     }
 
     @PostMapping
-    public MultipleOptionsQuestion createQuestion(@RequestBody DTOMultipleOptionsQuestion questionDto) {
-        MultipleOptionsQuestion question = MultipleOptionsQuestion.builder()
-                .text(questionDto.text())
-                .points(questionDto.points())
-                .rightAnswer(questionDto.rightAnswer())
-                .answerList(questionDto.answerList())
-                .build();
+    public MultipleOptionsQuestion createQuestion(@RequestBody DTOQuestion questionDto) {
+        MultipleOptionsQuestion question = new MultipleOptionsQuestion(questionDto);
 
         return questionRepository.save(question);
     }
 
     @PutMapping("/{id}")
-    public void updateQuestion(@PathVariable UUID id, @RequestBody DTOMultipleOptionsQuestion updatedQuestionDto) {
+    public void updateQuestion(@PathVariable UUID id, @RequestBody DTOQuestion updatedQuestionDto) {
         Optional<MultipleOptionsQuestion> questionOptional = questionRepository.findById(id);
 
         if (questionOptional.isPresent()) {

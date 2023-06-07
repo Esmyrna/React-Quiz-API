@@ -1,11 +1,11 @@
 package jogo.quiz.Controllers;
 
-import jogo.quiz.DTOS.DTOMultipleOptionsQuestion;
+import jogo.quiz.DTOS.DTOQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import jogo.quiz.Repositories.CheckboxQuestionRepository;
-import jogo.quiz.models.CheckboxQuestion;
+import jogo.quiz.Models.CheckboxQuestion;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,19 +32,14 @@ public class CheckboxQuestionController {
     }
 
     @PostMapping
-    public CheckboxQuestion createQuestion(@RequestBody DTOMultipleOptionsQuestion questionDto) {
-        CheckboxQuestion question = CheckboxQuestion.builder()
-                .text(questionDto.text())
-                .points(questionDto.points())
-                .rightAnswer(questionDto.rightAnswer())
-                .answerList(questionDto.answerList())
-                .build();
+    public CheckboxQuestion createQuestion(@RequestBody DTOQuestion questionDto) {
+        CheckboxQuestion question = new CheckboxQuestion(questionDto);
 
         return questionRepository.save(question);
     }
 
     @PutMapping("/{id}")
-    public void updateQuestion(@PathVariable UUID id, @RequestBody DTOMultipleOptionsQuestion updatedQuestionDto) {
+    public void updateQuestion(@PathVariable UUID id, @RequestBody DTOQuestion updatedQuestionDto) {
         Optional<CheckboxQuestion> questionOptional = questionRepository.findById(id);
 
         if (questionOptional.isPresent()) {

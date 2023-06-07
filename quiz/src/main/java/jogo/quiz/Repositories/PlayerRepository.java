@@ -1,5 +1,5 @@
 package jogo.quiz.Repositories;
-import jogo.quiz.models.Player;
+import jogo.quiz.Models.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

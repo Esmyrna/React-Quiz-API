@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import jogo.quiz.Repositories.PlayerRepository;
 import jogo.quiz.DTOS.DTOPlayerForCreation;
-import jogo.quiz.models.Player;
+import jogo.quiz.Models.Player;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,9 +20,12 @@ public class PlayerController {
         this.playerRepository = playerRepository;
     }
 
-    public void addNewPlayer(@RequestBody DTOPlayerForCreation playerDto) {
+    @PostMapping
+    public Player addNewPlayer(@RequestBody DTOPlayerForCreation playerDto) {
         Player player = new Player(playerDto.nome(), playerDto.githubUser());
         playerRepository.save(player);
+
+        return  player;
     }
 
     @GetMapping

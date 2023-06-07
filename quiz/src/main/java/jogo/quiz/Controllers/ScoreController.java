@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jogo.quiz.Repositories.ScoreRepository;
 import jogo.quiz.DTOS.DTOScore;
-import jogo.quiz.models.Score;
+import jogo.quiz.Models.Score;
 
 import java.util.List;
 import java.util.Optional;

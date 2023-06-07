@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Score {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
     private double points;
     private int rightAnswers;

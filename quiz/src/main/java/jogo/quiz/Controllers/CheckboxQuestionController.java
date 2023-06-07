@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/checkbox-questions")
 public class CheckboxQuestionController {
     private final CheckboxQuestionRepository questionRepository;

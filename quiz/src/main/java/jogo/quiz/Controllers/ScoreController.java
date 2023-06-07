@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/scores")
 public class ScoreController {
     private final ScoreRepository scoreRepository;

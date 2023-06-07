@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/dual-choice-questions")
 public class DualChoiceQuestionController {
     private final DualChoiceQuestionRepository questionRepository;

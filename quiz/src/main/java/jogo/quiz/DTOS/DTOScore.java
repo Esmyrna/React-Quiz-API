@@ -1,6 +1,8 @@
 package jogo.quiz.DTOS;
 
+import jogo.quiz.Models.Player;
+
 import java.util.UUID;
 
-public record DTOScore(UUID userId, double points, int rightAnswers) {
+public record DTOScore(double points, int rightAnswers, UUID playerId) {
 }

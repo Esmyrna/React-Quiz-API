@@ -1,4 +1,4 @@
 package jogo.quiz.DTOS;
 
-public record DTOPlayerForCreation(String nome, String githubUser) {
+public record DTOPlayerForCreation(String name, String githubUser) {
 }

@@ -13,18 +13,20 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Player {
-  private String nome;
+  private String name;
   private String githubUser;
 
-  @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
+  @Embedded
   private Score score;
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  public Player(String nome, String githubUser) {
-    this.nome = nome;
+  public Player(String name, String githubUser, Score score) {
+    this.name = name;
     this.githubUser = githubUser;
+    this.score = score;
   }
 }
+

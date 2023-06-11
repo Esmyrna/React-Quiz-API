@@ -1,5 +1,6 @@
 package jogo.quiz.Controllers;
 
+import jogo.quiz.Models.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import jogo.quiz.Repositories.PlayerRepository;
@@ -23,7 +24,8 @@ public class PlayerController {
 
     @PostMapping
     public Player addNewPlayer(@RequestBody DTOPlayerForCreation playerDto) {
-        Player player = new Player(playerDto.nome(), playerDto.githubUser());
+        Player player = new Player(playerDto.name(), playerDto.githubUser(), new Score(0, 0));
+
         playerRepository.save(player);
 
         return  player;
@@ -32,6 +34,11 @@ public class PlayerController {
     @GetMapping
     public List<Player> getAllPlayers() {
         return playerRepository.findAll();
+    }
+
+    @GetMapping("/leaderboard")
+    public List<Player> getPlayersByPointsAndAnswers() {
+        return playerRepository.findAllByOrderByScorePointsDescScoreRightAnswersDesc();
     }
 
     @GetMapping("/{id}")
@@ -46,10 +53,16 @@ public class PlayerController {
         if (playerOptional.isPresent()) {
             Player player = playerOptional.get();
 
-            player.setNome(updatedPlayer.getNome());
+            player.setName(updatedPlayer.getName());
             player.setGithubUser(updatedPlayer.getGithubUser());
+            player.setScore(updatedPlayer.getScore());
 
             playerRepository.save(player);
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletePlayer (@PathVariable UUID id){
+        playerRepository.deleteById(id);
     }
 }

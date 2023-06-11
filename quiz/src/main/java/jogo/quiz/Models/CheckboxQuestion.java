@@ -24,7 +24,7 @@ public class CheckboxQuestion {
     public String rightAnswer;
 
     @ElementCollection
-    @CollectionTable(name = "multiOptionsQuestionAnswers",
+    @CollectionTable(name = "checkboxQuestionAnswers",
             joinColumns = @JoinColumn(name = "question_id"))
     @Column(name = "answer")
     public List<String> answerList;
